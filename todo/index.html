@@ -5,9 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>TODO</title>
-  <link rel="./style.css" />
+  <link rel="stylesheet" type="text/css" href="style.css" />
+  <script src="/app.js" defer></script>
 </head>
 <body>
-  <script src="/app.js"></script>
+  <h1 class="title">Todo MVC</h1>
+  <div class="container">
+    <input id="item-input" name="add" type="text" />
+    <button onclick="addItem()">Add Item</button>
+    <ul class="todo-list" id="todo-list"></ul>
+    <div class="actions"></div>
+  </div>
 </body>
 </html>
