@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "serve",
     "build:todo": "rollup --watch --no-treeshake --format cjs ./todo/js/index.js --file ./todo/app.js",
+    "build:sidebar": "rollup --watch --no-treeshake --format cjs ./sidebar/js/index.js --file ./sidebar/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
