@@ -27,3 +27,32 @@ h1.title {
   font-style: italic;
   color: rgba(67, 47, 175, 0.15);
 }
+
+nav.side {
+  height: 100vh;
+  width: 240px;
+  background-color:#ebf8d3;
+  position: fixed;
+  top: 0;
+  left: 0;
+  border-right: solid 1px lightgray;
+  box-shadow: 2px 0px 2px rgba(128, 128, 128, 0.35);
+  transform: translateX(-245px);
+  transition: all 0.4s ease;
+}
+
+nav.side.open {
+  transform: translateX(0);
+}
+
+.nav-button {
+  border: solid 1px lightgray;
+  border-radius: 50%;
+  width: 4rem;
+  height: 4rem;
+  position: fixed;
+  left: 8px;
+  top: 8px;
+  z-index: 10;
+  font-size: 2.4rem;
+}
