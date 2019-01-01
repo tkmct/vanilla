@@ -50,6 +50,10 @@ button {
   border-radius: 4px;
 }
 
+button:focus {
+  outline: 0;
+}
+
 .container {
   display: flex;
   justify-content: center;
@@ -65,7 +69,8 @@ button {
   width: 60%;
 }
 
-.todo-list > div {
+.todo-list > div,
+.todo-list > ul > li {
   font-size: 2.2rem;
   font-style: italic;
   list-style: none;
@@ -73,4 +78,21 @@ button {
   background-color: white;
   border: solid 1px lightgray;
   margin-bottom: 3px;
+}
+
+.todo-list > ul > li:hover > .delete-button {
+  opacity: 1;
+}
+
+.delete-button {
+  opacity: 0;
+  border: none;
+  font-size: 1.6rem;
+  float: right;
+  transition: all 0.1s linear;
+  color: gainsboro;
+}
+
+.delete-button:hover {
+  color: sandybrown;
 }
