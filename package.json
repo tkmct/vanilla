@@ -5,7 +5,7 @@
   "main": "index.js",
   "scripts": {
     "serve": "serve",
-    "build:todo": "rollup --no-treeshake --format cjs ./todo/js/index.js --file ./todo/app.js",
+    "build:todo": "rollup --watch --no-treeshake --format cjs ./todo/js/index.js --file ./todo/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
