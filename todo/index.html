@@ -11,11 +11,13 @@
 <body>
   <h1 class="title">todo MVC</h1>
   <div class="container">
-    <div class="add-section">
-      <input id="item-input" name="add" type="text"  placeholder="What to do?"/>
-      <button onclick="addItem()">Add Item</button>
-    </div>
-    <div class="todo-list" id="todo-list"></div>
+   <div class="todo-list" id="todo-list">
+     <div class="add-form-container">
+       <form name="add-item" onsubmit="addItem(); return false;">
+          <input id="item-input" name="add" type="text"  placeholder="What to do?"/>
+        </form>
+      </div>
+   </div>
   </div>
 </body>
 </html>

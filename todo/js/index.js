@@ -17,9 +17,14 @@ function render() {
 
 function addItem() {
   const listRef = document.getElementById('todo-list')
-  const item = document.getElementById('item-input').value
-  todos.push(item)
-  listRef.appendChild(listItem(item))
+  const itemInput = document.getElementById('item-input')
+  
+  // add to model, update view
+  todos.push(itemInput.value)
+  listRef.appendChild(listItem(itemInput.value))
+
+  itemInput.value = ''
+  return false;
 }
 
 render()
