@@ -58,6 +58,7 @@ h1.title {
   display: flex;
   align-items: center;
   padding-left: 8px;
+  height: 2.6rem;
 }
 
 .shift-item.primary {
@@ -89,12 +90,40 @@ h1.title {
   top: 0.8rem;
   left: calc(1.2rem + 1.2rem); /* padding + pos */
   width: calc(2.4 * 1.5rem);
-  height: 2.6rem;
 }
 
 .shift-item.shift-2 {
   top: calc(0.8rem * 2 + 2.6rem);
-  left: calc(1.2rem + 1.2rem); /* padding + pos */
+  left: calc(1.2rem + 2.4rem * 0.5); /* padding + pos */
   width: calc(2.4rem * 4);
-  height: 2.6rem;
+}
+
+.shift-item.shift-3 {
+  top: calc(0.8rem * 3 + 2.6rem * 2);
+  left: calc(1.2rem + 2.4rem * 6.75); /* padding + pos */
+  width: calc(2.4rem * 6.5);
+}
+
+.shift-item.shift-4 {
+  top: calc(0.8rem * 3 + 2.6rem * 2);
+  left: calc(1.2rem + 2.4rem * 7.25); /* padding + pos */
+  width: calc(2.4rem * 3);
+}
+
+.shift-item.shift-5 {
+  top: calc(0.8rem * 3 + 2.6rem * 2);
+  left: calc(1.2rem + 2.4rem * 11); /* padding + pos */
+  width: calc(2.4rem * 1.5);
+}
+
+.shift-item.shift-6 {
+  top: calc(0.8rem * 4 + 2.6rem * 3);
+  left: calc(1.2rem + 2.4rem * 7); /* padding + pos */
+  width: calc(2.4rem * 6.5);
+}
+
+.shift-item.shift-7 {
+  top: calc(0.8rem * 4 + 2.6rem * 3);
+  left: calc(1.2rem + 2.4rem * 6.75); /* padding + pos */
+  width: calc(2.4rem * 7.25);
 }
