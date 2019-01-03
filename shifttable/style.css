@@ -65,6 +65,11 @@ h1.title {
   background-color: white;
 }
 
+.shift-item.disabled {
+  border: dashed 1px #999999;
+  background-color: white;
+}
+
 .shift-name {
   font-size: 1rem;
   font-weight: 600;
@@ -75,9 +80,21 @@ h1.title {
   color: #20AEE5;
 }
 
+.shift-item.disabled > .shift-name {
+  color: #999999;
+}
+
+/* each item */
 .shift-item.shift-1 {
   top: 0.8rem;
   left: calc(1.2rem + 1.2rem); /* padding + pos */
-  width: 3.6rem;
+  width: calc(2.4 * 1.5rem);
+  height: 2.6rem;
+}
+
+.shift-item.shift-2 {
+  top: calc(0.8rem * 2 + 2.6rem);
+  left: calc(1.2rem + 1.2rem); /* padding + pos */
+  width: calc(2.4rem * 4);
   height: 2.6rem;
 }
