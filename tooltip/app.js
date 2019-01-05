@@ -18,6 +18,8 @@ function showTooltip(root, button) {
     return
   }
   const content = document.createElement('div');
+  content.setAttribute('class', 'tooltip-content');
+
   content.appendChild(document.createTextNode('Hello, world'));
   root.appendChild(content);
 }

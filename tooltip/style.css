@@ -43,3 +43,18 @@ button:active {
   transform: translateY(1px) translateX(1px);
   box-shadow: none;
 }
+
+.tooltip-root {
+  position: relative;
+}
+
+.tooltip-content {
+  background-color: #03A9F4;
+  position: absolute;
+  padding: 1.2rem;
+  font-size: 1.2rem;
+  color: white;
+  border-radius: 4px;
+  top: 4px;
+  left: 4px;
+}
