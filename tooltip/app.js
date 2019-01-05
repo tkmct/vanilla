@@ -14,6 +14,9 @@ window.addEventListener('click', (e) => {
 });
 
 function showTooltip(root, button) {
+  if (root.children.length > 0) {
+    return
+  }
   const content = document.createElement('div');
   content.appendChild(document.createTextNode('Hello, world'));
   root.appendChild(content);
