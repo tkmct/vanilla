@@ -6,6 +6,7 @@
   "scripts": {
     "serve": "serve",
     "build:todo": "rollup --watch --no-treeshake --format cjs ./todo/js/index.js --file ./todo/app.js",
+    "build:todomvc": "rollup --watch --no-treeshake --format cjs ./todomvc/js/index.js --file ./todomvc/app.js",
     "build:sidebar": "rollup --watch --no-treeshake --format cjs ./sidebar/js/index.js --file ./sidebar/app.js",
     "build:shifttable": "rollup --watch --no-treeshake --format cjs ./shifttable/js/index.js --file ./shifttable/app.js",
     "build:tooltip": "rollup --watch --no-treeshake --format cjs ./tooltip/js/index.js --file ./tooltip/app.js",
