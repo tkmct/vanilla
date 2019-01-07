@@ -21,9 +21,16 @@ async function updateToLocalStorage(todo) {
   return Promise.resolve()
 }
 
-export class TodoList {
-  constructor(updater) {
-    this.todos = []
+export class TodoListModel {
+  constructor() {
+    // initial mock todos
+    this.todos = [
+      new TodoModel('Hello', false),
+      new TodoModel('World', true),
+    ]
+  }
+
+  init(updater) {
     this.update = updater
   }
 
@@ -35,7 +42,7 @@ export class TodoList {
   }
 
   async create(title) {
-    const newTodo = new Todo(title, false)
+    const newTodo = new TodoModel(title, false)
     this.todos.append(newTodo)
     await saveToLocalStorage(Todo) // write later
     this.update()
@@ -66,7 +73,7 @@ export class TodoList {
   }
 }
 
-export class Todo {
+export class TodoModel {
   constructor(title, done) {
     this.id = uuid()
     this.title = title

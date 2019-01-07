@@ -1,3 +1,19 @@
+class TodoListController {
+  constructor(TodoListView, TodoListModel) {
+    this.TodoListView = TodoListView;
+    this.TodoListModel = TodoListModel;
+
+    this.TodoListModel.init(this.update);
+  }
+
+  update() {
+    console.log('initial render');
+    this.TodoListView.render(
+      this.TodoListModel.todos
+    );
+  }
+}
+
 // have specific update method passed by controller
 // attatch update method to dom event
 class TodoListView {
@@ -263,9 +279,16 @@ async function updateToLocalStorage(todo) {
   return Promise.resolve()
 }
 
-class TodoList {
-  constructor(updater) {
-    this.todos = [];
+class TodoListModel {
+  constructor() {
+    // initial mock todos
+    this.todos = [
+      new TodoModel('Hello', false),
+      new TodoModel('World', true),
+    ];
+  }
+
+  init(updater) {
     this.update = updater;
   }
 
@@ -277,7 +300,7 @@ class TodoList {
   }
 
   async create(title) {
-    const newTodo = new Todo(title, false);
+    const newTodo = new TodoModel(title, false);
     this.todos.append(newTodo);
     await saveToLocalStorage(Todo); // write later
     this.update();
@@ -308,7 +331,7 @@ class TodoList {
   }
 }
 
-class Todo {
+class TodoModel {
   constructor(title, done) {
     this.id = uuidBrowser();
     this.title = title;
@@ -316,13 +339,11 @@ class Todo {
   }
 }
 
-const todos = [
-  new Todo('Hello', false),
-  new Todo('World', false),
-];
-
 window.onload = () => {
   const root = document.getElementById('root');
+  const model = new TodoListModel();
   const view = new TodoListView(root);
-  view.render(todos);
+  const controller = new TodoListController(view, model);
+
+  controller.update();
 };

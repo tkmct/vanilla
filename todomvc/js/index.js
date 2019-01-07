@@ -1,13 +1,12 @@
+import { TodoListController } from './controller'
 import { TodoListView } from './view'
-import { Todo } from './model'
-
-const todos = [
-  new Todo('Hello', false),
-  new Todo('World', false),
-]
+import { TodoListModel } from './model'
 
 window.onload = () => {
   const root = document.getElementById('root')
+  const model = new TodoListModel()
   const view = new TodoListView(root)
-  view.render(todos)
+  const controller = new TodoListController(view, model)
+
+  controller.update()
 }
