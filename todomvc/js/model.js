@@ -64,10 +64,10 @@ export class TodoList {
   }
 }
 
-export class Todo() {
+export class Todo {
   constructor(title, done) {
     this.id = Date.now().toString() // unique id using unix timestamp
-    this.title = done
+    this.title = title
     this.done = done
   }
 }
