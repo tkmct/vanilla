@@ -8,5 +8,5 @@ window.onload = () => {
   const view = new TodoListView(root)
   const controller = new TodoListController(view, model)
 
-  controller.update()
+  controller.render()
 }

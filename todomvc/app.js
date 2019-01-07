@@ -3,10 +3,10 @@ class TodoListController {
     this.TodoListView = TodoListView;
     this.TodoListModel = TodoListModel;
 
-    this.TodoListModel.init(this.update);
+    this.TodoListModel.init(this.render);
   }
 
-  update() {
+  render() {
     console.log('initial render');
     this.TodoListView.render(
       this.TodoListModel.todos
@@ -345,5 +345,5 @@ window.onload = () => {
   const view = new TodoListView(root);
   const controller = new TodoListController(view, model);
 
-  controller.update();
+  controller.render();
 };

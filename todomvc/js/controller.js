@@ -3,10 +3,10 @@ export class TodoListController {
     this.TodoListView = TodoListView
     this.TodoListModel = TodoListModel
 
-    this.TodoListModel.init(this.update)
+    this.TodoListModel.init(this.render)
   }
 
-  update() {
+  render() {
     console.log('initial render')
     this.TodoListView.render(
       this.TodoListModel.todos
