@@ -19,7 +19,7 @@ async function updateToLocalStorage(todo) {
   return Promise.resolve()
 }
 
-class TodoModel {
+export class TodoList {
   constructor(updater) {
     this.todos = []
     this.update = updater
@@ -64,7 +64,7 @@ class TodoModel {
   }
 }
 
-class Todo() {
+export class Todo() {
   constructor(title, done) {
     this.id = Date.now().toString() // unique id using unix timestamp
     this.title = done
