@@ -1,3 +1,5 @@
+import uuid from 'uuid-browser'
+
 // Data source is localstorage
 async function getAllFromLocalStorage() {
   // TODO: Write later
@@ -66,7 +68,7 @@ export class TodoList {
 
 export class Todo {
   constructor(title, done) {
-    this.id = Date.now().toString() // unique id using unix timestamp
+    this.id = uuid()
     this.title = title
     this.done = done
   }
