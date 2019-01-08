@@ -43,19 +43,21 @@ class TodoListView {
     }
 
     // rerender using new todos
-    const todoList = document.createElement('ul');
+    const listContainer = document.createElement('div');
     todos.forEach(todo => {
-      const todoItem = document.createElement('li'); 
-      todoItem.innerHTML = TodoView(todo);
-      todoList.appendChild(todoItem);
+      listContainer.appendChild(TodoView(todo));
     });
 
-    root.appendChild(todoList);
+    root.appendChild(listContainer);
   }
 }
 
 function TodoView(todo) {
-  return JSON.stringify(todo) // some dom here
+  const dom = document.createElement('div'); 
+  dom.setAttribute('class', 'todo-item');
+  dom.innerHTML = todo.title;
+ 
+  return dom
 }
 
 var commonjsGlobal = typeof window !== 'undefined' ? window : typeof global !== 'undefined' ? global : typeof self !== 'undefined' ? self : {};

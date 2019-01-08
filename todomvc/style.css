@@ -70,7 +70,8 @@ button:focus {
 }
 
 .todo-list > div,
-.todo-list > ul > li {
+.todo-list > ul > li,
+.todo-item {
   font-size: 2.2rem;
   font-style: italic;
   list-style: none;
