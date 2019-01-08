@@ -8,6 +8,20 @@ class TodoListController {
 
   init() {
     this.TodoListModel.init(this.render);
+    const handlers = {
+      onDelete: () => { console.log('delete'); },
+      onChangeDone: (todo, val) => { 
+        this.TodoListModel.update({
+          ...todo,
+          done: val
+        });
+      }
+    };
+    this.TodoListView.attatchEvents(handlers);
+  }
+
+  didMount() {
+    this.TodoListModel.getAll();
   }
 
   onAddTodo(value) {
@@ -30,13 +44,21 @@ class TodoListView {
    */
   constructor(root) {
     this.root = root;
+    this.handlers = {};
+
+    this.attatchEvents = this.attatchEvents.bind(this);
   }
 
-  attatchEvents() {
-    // todo: write later
+  attatchEvents(handlers) {
+    this.handlers = handlers;
   }
 
   render(todos) {
+    const { onChangeDone, onDelete } = this.handlers;
+    if (!onChangeDone || !onDelete) {
+      throw new Error('No handler is provided')
+    }
+
     // clean root children
     while (root.firstChild) {
       root.removeChild(root.firstChild);
@@ -48,17 +70,34 @@ class TodoListView {
     todos.forEach(todo => {
       const wrap = document.createElement('div');
       wrap.setAttribute('class', 'todo-list');
-      listContainer.appendChild(TodoView(todo));
+      listContainer.appendChild(
+        TodoView(todo, this.handlers.onChangeDone, this.handlers.onDelete)
+      );
     });
 
     root.appendChild(listContainer);
   }
 }
 
-function TodoView(todo) {
+function TodoView(todo, handleChangeDone, handleDelete) {
   const dom = document.createElement('div'); 
   dom.setAttribute('class', 'todo-item');
   dom.innerHTML = todo.title;
+
+  const checkBox = document.createElement('input');
+  checkBox.setAttribute('class', 'done-checkbox');
+  checkBox.setAttribute('type', 'checkbox');
+  if (todo.done) {
+    checkBox.setAttribute('checked', '');
+  }
+
+  checkBox.addEventListener('change', () => {
+    handleChangeDone(todo, checkBox.checked);
+  });
+
+  dom.insertBefore(checkBox, dom.childNodes[0]);
+
+  // TODO: add delete button
  
   return dom
 }
@@ -292,28 +331,27 @@ class TodoListModel {
   }
 
   init(updater) {
-    this.update = updater;
-    this.getAll();
+    this.render = updater;
   }
 
   getAll() {
     const todos = getAllFromLocalStorage();
     this.todos = todos;
-    this.update();
+    this.render();
   }
 
   create(title) {
     const newTodo = new TodoModel(title, false);
     this.todos.push(newTodo);
     updateLocalStorage(this.todos);
-    this.update();
+    this.render();
   }
 
   delete(id) {
     const index = this.todos.findIndex(todo => todo.id === id);
     this.todos.splice(index, 1);
     updateLocalStorage(this.todos);
-    this.update();
+    this.render();
   }
 
   update({ id, title, done }) {
@@ -321,7 +359,8 @@ class TodoListModel {
       throw new Error('id is not provided')
     }
 
-    const todo = this.todos.find(todo => todo.id === id);
+    const idx = this.todos.findIndex(todo => todo.id === id);
+    const todo = this.todos[idx];
     // update field
     if (title !== undefined) {
       todo.title = title;
@@ -329,8 +368,10 @@ class TodoListModel {
     if (done !== undefined) {
       todo.done = done;
     }
+    this.todos[idx] = todo;
+
     updateLocalStorage(this.todos);
-    this.update();
+    this.render();
   }
 }
 
@@ -350,11 +391,12 @@ const main = () => {
 
   controller.init();
   controller.render();
+  controller.didMount();
 
   // todo: write form as mvc later
   const form = document.getElementById('add-form');
   const input = document.getElementById('item-input');
-
+  
   form.addEventListener('submit', (e) => {
     e.preventDefault();
 

@@ -8,6 +8,20 @@ export class TodoListController {
 
   init() {
     this.TodoListModel.init(this.render)
+    const handlers = {
+      onDelete: () => { console.log('delete') },
+      onChangeDone: (todo, val) => { 
+        this.TodoListModel.update({
+          ...todo,
+          done: val
+        })
+      }
+    }
+    this.TodoListView.attatchEvents(handlers)
+  }
+
+  didMount() {
+    this.TodoListModel.getAll()
   }
 
   onAddTodo(value) {

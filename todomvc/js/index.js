@@ -10,11 +10,12 @@ const main = () => {
 
   controller.init()
   controller.render()
+  controller.didMount()
 
   // todo: write form as mvc later
   const form = document.getElementById('add-form')
   const input = document.getElementById('item-input')
-
+  
   form.addEventListener('submit', (e) => {
     e.preventDefault()
 

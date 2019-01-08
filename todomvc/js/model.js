@@ -22,28 +22,27 @@ export class TodoListModel {
   }
 
   init(updater) {
-    this.update = updater
-    this.getAll()
+    this.render = updater
   }
 
   getAll() {
     const todos = getAllFromLocalStorage()
     this.todos = todos
-    this.update()
+    this.render()
   }
 
   create(title) {
     const newTodo = new TodoModel(title, false)
     this.todos.push(newTodo)
     updateLocalStorage(this.todos)
-    this.update()
+    this.render()
   }
 
   delete(id) {
     const index = this.todos.findIndex(todo => todo.id === id)
     this.todos.splice(index, 1)
     updateLocalStorage(this.todos)
-    this.update()
+    this.render()
   }
 
   update({ id, title, done }) {
@@ -51,7 +50,8 @@ export class TodoListModel {
       throw new Error('id is not provided')
     }
 
-    const todo = this.todos.find(todo => todo.id === id)
+    const idx = this.todos.findIndex(todo => todo.id === id)
+    const todo = this.todos[idx]
     // update field
     if (title !== undefined) {
       todo.title = title
@@ -59,8 +59,10 @@ export class TodoListModel {
     if (done !== undefined) {
       todo.done = done
     }
+    this.todos[idx] = todo
+
     updateLocalStorage(this.todos)
-    this.update()
+    this.render()
   }
 }
 
