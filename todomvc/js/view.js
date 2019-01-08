@@ -21,7 +21,10 @@ export class TodoListView {
 
     // rerender using new todos
     const listContainer = document.createElement('div')
+    listContainer.setAttribute('class', 'list-container')
     todos.forEach(todo => {
+      const wrap = document.createElement('div')
+      wrap.setAttribute('class', 'todo-list')
       listContainer.appendChild(TodoView(todo))
     })
 
