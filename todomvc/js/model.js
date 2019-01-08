@@ -43,8 +43,8 @@ export class TodoListModel {
 
   async create(title) {
     const newTodo = new TodoModel(title, false)
-    this.todos.append(newTodo)
-    await saveToLocalStorage(Todo) // write later
+    this.todos.push(newTodo)
+    await saveToLocalStorage(newTodo) // write later
     this.update()
   }
 

@@ -3,11 +3,18 @@ class TodoListController {
     this.TodoListView = TodoListView;
     this.TodoListModel = TodoListModel;
 
+    this.render = this.render.bind(this);
+  }
+
+  init() {
     this.TodoListModel.init(this.render);
   }
 
+  onAddTodo(value) {
+    this.TodoListModel.create(value);
+  }
+
   render() {
-    console.log('initial render');
     this.TodoListView.render(
       this.TodoListModel.todos
     );
@@ -301,8 +308,8 @@ class TodoListModel {
 
   async create(title) {
     const newTodo = new TodoModel(title, false);
-    this.todos.append(newTodo);
-    await saveToLocalStorage(Todo); // write later
+    this.todos.push(newTodo);
+    await saveToLocalStorage(newTodo); // write later
     this.update();
   }
 
@@ -345,5 +352,18 @@ window.onload = () => {
   const view = new TodoListView(root);
   const controller = new TodoListController(view, model);
 
+  controller.init();
   controller.render();
+
+  // todo: write form as mvc later
+  const form = document.getElementById('add-form');
+  const input = document.getElementById('item-input');
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+
+    const value = input.value;
+    controller.onAddTodo(value);
+    input.value = '';
+  });
 };
