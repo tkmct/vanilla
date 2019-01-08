@@ -270,25 +270,16 @@ uuid.v4 = v4_1;
 
 var uuidBrowser = uuid;
 
+const LOCALSTORAGE_KEY = 'ttm.todomvc';
+
 // Data source is localstorage
-async function getAllFromLocalStorage() {
-  // TODO: Write later
-  return Promise.resolve([])
+function getAllFromLocalStorage() {
+  const val = JSON.parse(localStorage.getItem(LOCALSTORAGE_KEY));
+  return val || []
 }
 
-async function saveToLocalStorage(todo) {
-  // TODO: Write later
-  return Promise.resolve()
-}
-
-async function deleteFromLocalStorage(id) {
-  // TODO: Write later
-  return Promise.resolve()
-}
-
-async function updateToLocalStorage(todo) {
-  // TODO: Write later
-  return Promise.resolve()
+function updateLocalStorage(todos) {
+  localStorage.setItem(LOCALSTORAGE_KEY, JSON.stringify(todos));
 }
 
 class TodoListModel {
@@ -302,30 +293,30 @@ class TodoListModel {
 
   init(updater) {
     this.update = updater;
+    this.getAll();
   }
 
-  async getAll() {
-    // get all code
-    const todos = await getAllFromLocalStorage(); // write later
+  getAll() {
+    const todos = getAllFromLocalStorage();
     this.todos = todos;
     this.update();
   }
 
-  async create(title) {
+  create(title) {
     const newTodo = new TodoModel(title, false);
     this.todos.push(newTodo);
-    await saveToLocalStorage(newTodo); // write later
+    updateLocalStorage(this.todos);
     this.update();
   }
 
-  async delete(id) {
+  delete(id) {
     const index = this.todos.findIndex(todo => todo.id === id);
     this.todos.splice(index, 1);
-    await deleteFromLocalStorage(id);
+    updateLocalStorage(this.todos);
     this.update();
   }
 
-  async update({ id, title, done }) {
+  update({ id, title, done }) {
     if (!id) {
       throw new Error('id is not provided')
     }
@@ -338,7 +329,7 @@ class TodoListModel {
     if (done !== undefined) {
       todo.done = done;
     }
-    await updateToLocalStorage(todo);
+    updateLocalStorage(this.todos);
     this.update();
   }
 }
@@ -351,7 +342,7 @@ class TodoModel {
   }
 }
 
-window.onload = () => {
+const main = () => {
   const root = document.getElementById('root');
   const model = new TodoListModel();
   const view = new TodoListView(root);
@@ -372,3 +363,4 @@ window.onload = () => {
     input.value = '';
   });
 };
+main();

@@ -2,7 +2,7 @@ import { TodoListController } from './controller'
 import { TodoListView } from './view'
 import { TodoListModel } from './model'
 
-window.onload = () => {
+const main = () => {
   const root = document.getElementById('root')
   const model = new TodoListModel()
   const view = new TodoListView(root)
@@ -23,3 +23,4 @@ window.onload = () => {
     input.value = ''
   })
 }
+main()
