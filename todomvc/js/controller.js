@@ -9,7 +9,9 @@ export class TodoListController {
   init() {
     this.TodoListModel.init(this.render)
     const handlers = {
-      onDelete: () => { console.log('delete') },
+      onDelete: (todo) => { 
+        this.TodoListModel.delete(todo.id)
+       },
       onChangeDone: (todo, val) => { 
         this.TodoListModel.update({
           ...todo,

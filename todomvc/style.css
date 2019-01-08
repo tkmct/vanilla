@@ -81,7 +81,7 @@ h1.title {
   margin-bottom: 3px;
 }
 
-.todo-list > ul > li:hover > .delete-button {
+.todo-item:hover > .delete-button {
   opacity: 1;
 }
 

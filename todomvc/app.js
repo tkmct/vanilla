@@ -9,7 +9,9 @@ class TodoListController {
   init() {
     this.TodoListModel.init(this.render);
     const handlers = {
-      onDelete: () => { console.log('delete'); },
+      onDelete: (todo) => { 
+        this.TodoListModel.delete(todo.id);
+       },
       onChangeDone: (todo, val) => { 
         this.TodoListModel.update({
           ...todo,
@@ -94,10 +96,15 @@ function TodoView(todo, handleChangeDone, handleDelete) {
   checkBox.addEventListener('change', () => {
     handleChangeDone(todo, checkBox.checked);
   });
-
   dom.insertBefore(checkBox, dom.childNodes[0]);
 
-  // TODO: add delete button
+  const deleteButton = document.createElement('button');
+  deleteButton.appendChild(document.createTextNode('✕'));
+  deleteButton.setAttribute('class', 'delete-button');
+  deleteButton.addEventListener('click', () => {
+    handleDelete(todo);
+  });
+  dom.appendChild(deleteButton);
  
   return dom
 }
