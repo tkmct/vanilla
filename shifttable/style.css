@@ -28,6 +28,8 @@ h1.title {
   color: rgba(67, 47, 175, 0.15);
 }
 
+
+/* Shift Table */
 .container { 
   width: 100vw;
   overflow-x: scroll;
@@ -145,4 +147,107 @@ h1.title {
   top: calc(0.8rem * 5 + 2.6rem * 4);
   left: calc(1.2rem + 2.4rem * 8); /* padding + pos */
   width: calc(2.4rem * 5);
+}
+
+
+/* Order Graph */
+.order-graph-container {
+  background-color: white;
+  display: flex;
+  width: fit-content;
+}
+
+.order-graph-container > .column {
+  width: 2.4rem;
+  height: 18rem;
+  border-right: solid 1px white;
+}
+
+.order-graph-container > .column > .bar-container {
+  height: calc(100% - 1.2rem);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.bar-container > .order-bar {
+  background-color: #CBEAFB;
+  transition: all 0.2s linear;
+}
+
+.bar-container > .order-bar:hover {
+  background-color: #20AEE5;
+}
+
+.order-bar.bar-1 {
+  height: 30%;
+}
+.order-bar.bar-2 {
+  height: 60%;
+}
+.order-bar.bar-3 {
+  height: 70%;
+}
+.order-bar.bar-4 {
+  height: 40%;
+}
+.order-bar.bar-5 {
+  height: 50%;
+}
+.order-bar.bar-6 {
+  height: 50%;
+}
+.order-bar.bar-7 {
+  height: 68%;
+}
+.order-bar.bar-8 {
+  height: 62%;
+}
+.order-bar.bar-9 {
+  height: 60%;
+}
+.order-bar.bar-10 {
+  height: 48%;
+}
+.order-bar.bar-11 {
+  height: 50%;
+}
+.order-bar.bar-12 {
+  height: 46%;
+}
+.order-bar.bar-13 {
+  height: 44%;
+}
+.order-bar.bar-14 {
+  height: 1%;
+}
+.order-bar.bar-15 {
+  height: 1%;
+}
+.order-bar.bar-16 {
+  height: 28%;
+}
+.order-bar.bar-17 {
+  height: 38%;
+}
+.order-bar.bar-18 {
+  height: 40%;
+}
+.order-bar.bar-19 {
+  height: 44%;
+}
+.order-bar.bar-20 {
+  height: 48%;
+}
+.order-bar.bar-21 {
+  height: 28%;
+}
+.order-bar.bar-22 {
+  height: 28%;
+}
+.order-bar.bar-23 {
+  height: 36%;
+}
+.order-bar.bar-24 {
+  height: 40%;
 }
